@@ -31,7 +31,7 @@ export class App {
     constructor(){
 
         this.colDefs = this.colDefs.map((obj: any) => 
-            ({ ...obj, filter: true, filterParams: { applyMiniFilterWhileTyping: true } }))
+            ({ ...obj, filter: true, filterParams: { applyMiniFilterWhileTyping: true }, width: 180}))
     }
 
     onGridReady(params: GridReadyEvent) {

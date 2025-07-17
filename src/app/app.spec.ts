@@ -1,10 +1,9 @@
 import { provideZonelessChangeDetection } from '@angular/core';
-import { TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { App } from './app';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { ModuleRegistry, AllCommunityModule, type GridReadyEvent, type GridApi } from 'ag-grid-community';
-import { CommonModule } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import { ModuleRegistry, AllCommunityModule, GridReadyEvent } from 'ag-grid-community';
 
 describe('App', () => {
 
@@ -89,7 +88,7 @@ describe('App', () => {
 
     component.onGridReady(params);
 
-    const req = httpTesting.expectOne('https://www.ag-grid.com/example-assets/space-mission-data.json');
+    const req = httpTesting.expectOne('https://www.ag-grid.com/example-assets/space-mission-data.json');  
     req.flush(mockData);
 
     const sortModel = [{ colId: 'price', sort: 'asc' }];
