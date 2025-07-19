@@ -2,7 +2,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, GridReadyEvent, GridApi } from 'ag-grid-community';
+import { ColDef, GridReadyEvent, GridApi, themeQuartz } from 'ag-grid-community';
+import { colorSchemeDark } from 'ag-grid-community';
 
 @Component({
     selector: 'app-root',
@@ -14,7 +15,15 @@ export class App {
 
     http    = inject(HttpClient);
     rowData = signal<any[]>([]);
-    data    = signal<any[]>([]);;
+    data    = signal<any[]>([]);
+    myTheme = themeQuartz.withPart(colorSchemeDark);
+    
+    defaultColDef: ColDef = {
+        flex: 1,
+        filterParams: { applyMiniFilterWhileTyping: true },
+        filter: true, 
+        floatingFilter: true
+    }
     
     gridApi!: GridApi;
 
@@ -28,11 +37,7 @@ export class App {
         { field: "rocket"     }
     ];
 
-    constructor(){
-
-        this.colDefs = this.colDefs.map((obj: any) => 
-            ({ ...obj, filter: true, filterParams: { applyMiniFilterWhileTyping: true }, width: 180}))
-    }
+    constructor(){ }
 
     onGridReady(params: GridReadyEvent) {
 
