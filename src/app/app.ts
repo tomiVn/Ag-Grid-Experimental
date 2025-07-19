@@ -13,10 +13,19 @@ import { colorSchemeDark } from 'ag-grid-community';
 })
 export class App {
 
-    http    = inject(HttpClient);
-    rowData = signal<any[]>([]);
-    data    = signal<any[]>([]);
-    myTheme = themeQuartz.withPart(colorSchemeDark);
+    http      = inject(HttpClient);
+    rowData   = signal<any[]>([]);
+    data      = signal<any[]>([]);
+    theme     = themeQuartz.withPart(colorSchemeDark);
+
+    customTheme = themeQuartz.withParams({
+        backgroundColor: 'rgb(249, 245, 227)',
+        foregroundColor: 'rgb(126, 46, 132)',
+        headerTextColor: 'rgb(204, 245, 172)',
+        headerBackgroundColor: 'rgb(209, 64, 129)',
+        oddRowBackgroundColor: 'rgb(0, 0, 0, 0.03)',
+        headerColumnResizeHandleColor: 'rgb(126, 46, 132)',
+    });
     
     defaultColDef: ColDef = {
         flex: 1,
