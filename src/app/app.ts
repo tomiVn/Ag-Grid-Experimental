@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, GridReadyEvent, GridApi, themeQuartz, type SideBarDef } from 'ag-grid-community';
+import { ColDef, GridReadyEvent, GridApi, themeQuartz, SideBarDef } from 'ag-grid-community';
 import { colorSchemeDark } from 'ag-grid-community';
 
 @Component({
@@ -19,18 +19,18 @@ export class App {
     theme     = themeQuartz.withPart(colorSchemeDark);
 
     customTheme = themeQuartz.withParams({
-        backgroundColor: 'rgb(249, 245, 227)',
-        foregroundColor: 'rgb(126, 46, 132)',
-        headerTextColor: 'rgb(204, 245, 172)',
-        headerBackgroundColor: 'rgb(209, 64, 129)',
-        oddRowBackgroundColor: 'rgb(0, 0, 0, 0.03)',
+        backgroundColor:               'rgb(249, 245, 227)',
+        foregroundColor:               'rgb(126, 46, 132)',
+        headerTextColor:               'rgb(204, 245, 172)',
+        headerBackgroundColor:         'rgb(209, 64, 129)',
+        oddRowBackgroundColor:         'rgb(0, 0, 0, 0.03)',
         headerColumnResizeHandleColor: 'rgb(126, 46, 132)',
     });
     
     defaultColDef: ColDef = {
-        flex: 1,
-        filterParams: { applyMiniFilterWhileTyping: true },
-        filter: true, 
+        flex:           1,
+        filterParams:   { applyMiniFilterWhileTyping: true },
+        filter:         true, 
         floatingFilter: true
     }
 
