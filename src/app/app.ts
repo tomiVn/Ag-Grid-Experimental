@@ -35,14 +35,25 @@ export class App {
     }
 
     sideBar: SideBarDef = {
-        toolPanels: ['columns', 'filters']
+        toolPanels: [
+            'columns', 
+            'filters',
+            // {
+            //     id: 'customComponent',
+            //     labelDefault: 'Custom Component',
+            //     labelKey: 'customComponent',
+            //     iconKey: 'home',
+            //     toolPanel: App
+            // }
+        ],
+        //defaultToolPanel: 'customComponent'
     }
     
     gridApi!: GridApi;
 
     colDefs: ColDef[] = [
         { field: "mission"    },
-        { field: "company"    , cellRenderer: (input: any) => `<a href="/${input.value}">${input.value}</a>`},
+        { field: "company"    , cellRenderer: (input: any) => `<a href="/${input.value}" target="_blank">${input.value}</a>`},
         { field: "location"   },
         { field: "date"       },
         { field: "price"      },
