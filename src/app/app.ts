@@ -4,6 +4,7 @@ import { Component, inject, signal } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, GridReadyEvent, GridApi, themeQuartz, SideBarDef } from 'ag-grid-community';
 import { colorSchemeDark } from 'ag-grid-community';
+import { LinkTemplate } from './templates/link-template/link-template';
 
 @Component({
     selector: 'app-root',
@@ -52,8 +53,8 @@ export class App {
     gridApi!: GridApi;
 
     colDefs: ColDef[] = [
-        { field: "mission"    },
-        { field: "company"    , cellRenderer: (input: any) => `<a href="/${input.value}" target="_blank">${input.value}</a>`},
+        { field: "mission"    , cellRenderer: (input: any) => `# ${input.value}`},
+        { field: "company"    , cellRenderer: LinkTemplate},
         { field: "location"   },
         { field: "date"       },
         { field: "price"      },
