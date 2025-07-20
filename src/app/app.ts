@@ -38,7 +38,7 @@ export class App {
 
     colDefs: ColDef[] = [
         { field: "mission"    },
-        { field: "company"    },
+        { field: "company"    , cellRenderer: (input: any) => `<a href="/${input.value}">${input.value}</a>`},
         { field: "location"   },
         { field: "date"       },
         { field: "price"      },
