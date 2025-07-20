@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, GridReadyEvent, GridApi, themeQuartz } from 'ag-grid-community';
+import { ColDef, GridReadyEvent, GridApi, themeQuartz, type SideBarDef } from 'ag-grid-community';
 import { colorSchemeDark } from 'ag-grid-community';
 
 @Component({
@@ -32,6 +32,10 @@ export class App {
         filterParams: { applyMiniFilterWhileTyping: true },
         filter: true, 
         floatingFilter: true
+    }
+
+    sideBar: SideBarDef = {
+        toolPanels: ['columns', 'filters']
     }
     
     gridApi!: GridApi;
