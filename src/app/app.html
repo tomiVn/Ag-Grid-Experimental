@@ -1,7 +1,6 @@
-
-
+<!-- This Custom Function Control Cards Data Bellow: (filterChanged)="updateDisplayedRows() -->
 <ag-grid-angular
-    style           ="width: 100%; height: calc(100vh - 102px);"
+    style           ="width: 100%; height: calc(50vh - 102px);"
     [rowData]       ="rowData()"
     [columnDefs]    ="colDefs"
     (gridReady)     ="onGridReady($event)"
@@ -9,9 +8,15 @@
     [defaultColDef] ="defaultColDef"
     [theme]         ="theme"
     [sideBar]       ="sideBar"
+    (filterChanged) ="updateDisplayedRows()"
+    (sortChanged)   ="updateDisplayedRows()"
 />
 
 <button (click)="resetFilterValues()" 
     style="margin: 24px; background-color: red; padding: 6px 12px; border-radius: 6px;">
   Reset
 </button>
+
+<!-- Display Cards; This Function control Filters (filterChanged)="updateDisplayedRows() -->
+<app-custom-card [data]="displayedRows" class="card-grid"/>
+

@@ -1,14 +1,14 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, GridReadyEvent, GridApi, themeQuartz, SideBarDef } from 'ag-grid-community';
 import { colorSchemeDark } from 'ag-grid-community';
 import { LinkTemplate } from './templates/link-template/link-template';
+import { CustomCard } from "./templates/custom-card/custom-card";
 
 @Component({
     selector: 'app-root',
-    imports: [AgGridAngular],
+    imports: [AgGridAngular, CustomCard],
     templateUrl: './app.html',
     styleUrl: './app.css'
 })
@@ -54,13 +54,21 @@ export class App {
 
     colDefs: ColDef[] = [
         { field: "mission"    , cellRenderer: (input: any) => `# ${input.value}`},
-        { field: "company"    , cellRenderer: LinkTemplate},
+        { field: "company"    , 
+            cellRenderer: LinkTemplate,
+            // Add custom Value Element and Input to custom Component
+            // cellRendererParams: { 
+            //     customName: 'valueName'
+            // }
+        },
         { field: "location"   },
         { field: "date"       },
         { field: "price"      },
         { field: "successful" },
         { field: "rocket"     }
     ];
+
+    displayedRows: any[] = [];
 
     constructor(){ }
 
@@ -72,6 +80,7 @@ export class App {
                 this.gridApi = params.api;
                 this.rowData.set(data);
                 this.data.set(data);
+                this.displayedRows = data;
             });
     }
 
@@ -81,4 +90,12 @@ export class App {
         this.gridApi.applyColumnState( { defaultState: { sort: null }} );
         this.gridApi.onFilterChanged(); 
     }
+
+    // Method to use Cards with Filters
+    updateDisplayedRows() {
+        this.displayedRows = [];
+        this.gridApi.forEachNodeAfterFilterAndSort(node => {
+        this.displayedRows.push(node.data);
+    });
+  }
 }
